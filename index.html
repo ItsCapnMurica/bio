@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landon — itscapnmurica</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --void: #0a0a0a;
+      --char: #1d1d1d;
+      --iron: #3d3d3d;
+      --ink: #282828;
+      --fog: #686868;
+      --mist: #c2c2c2;
+      --bone: #e5e5e5;
+      --paper: #ffffff;
+      --indigo: #6b62f2;
+      --font: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--void);
+      color: var(--bone);
+      font-family: var(--font);
+      min-height: 100vh;
+      padding-bottom: 120px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(180deg, rgb(72,103,175) 0%, rgb(156,175,184) 55%, rgb(196,149,119) 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(50% 50% at 50% 35%, rgba(107,98,242,0.5) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-card {
+      position: relative;
+      z-index: 1;
+      background: rgba(29,29,29,0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(229,229,229,0.09);
+      border-radius: 40px;
+      padding: 48px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .hero-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--fog);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-name {
+      font-size: clamp(48px, 10vw, 72px);
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: -2.5px;
+      color: var(--paper);
+      margin-bottom: 16px;
+    }
+    .hero-handle {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--mist);
+      margin-bottom: 28px;
+    }
+    .hero-handle a {
+      color: var(--indigo);
+      text-decoration: none;
+    }
+    .hero-bio {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--mist);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--mist);
+      background: rgba(40,40,40,0.9);
+      border: 1px solid rgba(229,229,229,0.1);
+      border-radius: 9999px;
+      padding: 5px 14px;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 80px 24px 0;
+    }
+
+    .section { margin-bottom: 64px; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--fog);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(229,229,229,0.07);
+    }
+
+    /* SKILL ROWS */
+    .skill-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(229,229,229,0.06);
+    }
+    .skill-row:last-child { border-bottom: none; }
+    .skill-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--bone);
+    }
+    .skill-right { display: flex; align-items: center; gap: 12px; }
+    .skill-level {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--fog);
+    }
+    .skill-bar-wrap {
+      width: 80px;
+      height: 3px;
+      background: rgba(229,229,229,0.1);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .skill-bar {
+      height: 100%;
+      background: var(--indigo);
+      border-radius: 9999px;
+      opacity: 0.7;
+    }
+
+    /* PROJECT ROWS */
+    .project-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(229,229,229,0.06);
+    }
+    .project-row:last-child { border-bottom: none; }
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .project-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--bone);
+    }
+    .project-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--indigo);
+      text-decoration: none;
+      opacity: 0.8;
+    }
+    .project-desc {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--fog);
+      line-height: 1.55;
+    }
+
+    /* CONTACT */
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(229,229,229,0.06);
+    }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-label {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--fog);
+    }
+    .contact-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--mist);
+    }
+    .contact-value a {
+      color: var(--mist);
+      text-decoration: none;
+    }
+    .contact-value a:hover { color: var(--bone); }
+
+    /* FLOATING NAV */
+    .floating-nav {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(29,29,29,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(229,229,229,0.1);
+      border-radius: 9999px;
+      padding: 0 8px 0 20px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      white-space: nowrap;
+    }
+    .nav-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--bone);
+    }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links button {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--fog);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      padding: 0;
+      transition: color 0.15s;
+    }
+    .nav-links button:hover { color: var(--bone); }
+    .nav-cta {
+      background: var(--paper);
+      color: var(--void);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 9999px;
+      padding: 6px 16px;
+      text-decoration: none;
+      margin-left: 4px;
+    }
+
+    @media (max-width: 540px) {
+      .hero-card { padding: 32px 24px; border-radius: 24px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-card">
+      <p class="hero-label">Frederick, MD</p>
+      <h1 class="hero-name">Landon</h1>
+      <p class="hero-handle"><a href="https://github.com/itscapnmurica" target="_blank">github.com/itscapnmurica</a></p>
+      <p class="hero-bio">Open source builder. Currently learning Python. Makes Linux distros, Minecraft texture packs, and things that probably shouldn't exist.</p>
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Bash</span>
+        <span class="tag">GitHub Actions</span>
+        <span class="tag">HTML / CSS / JS</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="content">
+
+    <div class="section" id="skills">
+      <p class="section-title">Skills</p>
+      <div class="skill-row">
+        <span class="skill-name">Python</span>
+        <div class="skill-right">
+          <span class="skill-level">Learning</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:30%"></div></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">HTML / CSS / JS</span>
+        <div class="skill-right">
+          <span class="skill-level">Comfortable</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Bash / Shell</span>
+        <div class="skill-right">
+          <span class="skill-level">Comfortable</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:60%"></div></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Linux (Arch)</span>
+        <div class="skill-right">
+          <span class="skill-level">Proficient</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">GitHub Actions / CI</span>
+        <div class="skill-right">
+          <span class="skill-level">Proficient</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Git</span>
+        <div class="skill-right">
+          <span class="skill-level">Comfortable</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:60%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="projects">
+      <p class="section-title">Projects</p>
+      <div class="project-row">
+        <div class="project-top">
+          <span class="project-name">Texture Packs</span>
+          <a class="project-link" href="https://modrinth.com/user/itscapnmurica" target="_blank">Modrinth →</a>
+        </div>
+        <p class="project-desc">Minecraft resource pack collection on Modrinth. Earnings donated to Doctors Without Borders.</p>
+      </div>
+      <div class="project-row">
+        <div class="project-top">
+          <span class="project-name">Baccarat</span>
+          <a class="project-link" href="https://baccarattime.duckdns.org" target="_blank">Play →</a>
+        </div>
+        <p class="project-desc">Fully functional baccarat game in HTML/JS. Deployed to GitHub Pages.</p>
+      </div>
+      <div class="project-row">
+        <div class="project-top">
+          <span class="project-name">ManimMovies</span>
+        </div>
+        <p class="project-desc">Concept: feature-length animated films built entirely in the Manim Python library. Probably the first time anyone's tried this.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-title">Find me</p>
+      <div class="contact-row">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value"><a href="https://github.com/itscapnmurica" target="_blank">itscapnmurica</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Modrinth</span>
+        <span class="contact-value"><a href="https://modrinth.com/user/itscapnmurica" target="_blank">itscapnmurica</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Frederick, MD</span>
+      </div>
+    </div>
+
+  </div>
+
+  <nav class="floating-nav">
+    <span class="nav-name">Landon</span>
+    <div class="nav-links">
+      <button onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">Skills</button>
+      <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</button>
+    </div>
+    <a class="nav-cta" href="https://github.com/itscapnmurica" target="_blank">GitHub →</a>
+  </nav>
+
+</body>
+</html>
